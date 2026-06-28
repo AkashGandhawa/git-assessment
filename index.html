@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetic Landing Page</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --surface: rgba(15, 23, 42, 0.88);
+      --accent: #7c3aed;
+      --accent-soft: #a78bfa;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at top, rgba(124, 58, 237, 0.22), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.16), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.75rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.75rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-copy p {
+      max-width: 42rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 1.8rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), #22d3ee);
+      color: #fff;
+      box-shadow: 0 18px 36px rgba(124, 58, 237, 0.18);
+    }
+
+    .button.secondary {
+      background: rgba(148, 163, 184, 0.14);
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 1.25rem;
+      padding: 1rem 1.3rem;
+      min-width: 10rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      backdrop-filter: blur(14px);
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .feature {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 1.25rem;
+      padding: 1.4rem;
+    }
+
+    .feature h3 {
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .product-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .product-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    .product-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 4rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+      padding-top: 1.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">Luma</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Craft beautiful digital experiences with ease.</h1>
+        <p>Launch your next project with a polished landing page designed to feel modern, calm, and refined. Built for creators, teams, and startups.</p>
+        <div class="buttons">
+          <button class="button primary">Get Started</button>
+          <button class="button secondary">View Templates</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>12k+</strong> users launched</div>
+          <div class="stat"><strong>98%</strong> customer satisfaction</div>
+          <div class="stat"><strong>24/7</strong> support available</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="card">
+          <h2>Beautiful design system</h2>
+          <p>Refined style, meaningful spacing, and subtle textures combine to create an interface that feels premium without distraction.</p>
+        </div>
+        <div class="card">
+          <h2>Fast setup</h2>
+          <p>Get your landing page live in minutes with flexible sections, responsive layouts, and ready-to-use components.</p>
+        </div>
+        <div class="card">
+          <h2>Growth-focused</h2>
+          <p>Engaging visuals, clear messaging, and direct calls to action help convert visitors into customers quickly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="product-grid">
+      <div class="product-card">
+        <h3>Launch Suite</h3>
+        <p>Everything you need to ship a polished landing page, from layout presets to conversion-focused sections.</p>
+      </div>
+      <div class="product-card">
+        <h3>Design Toolkit</h3>
+        <p>Access reusable components, subtle motion patterns, and color systems made for modern brands.</p>
+      </div>
+      <div class="product-card">
+        <h3>Growth Insights</h3>
+        <p>Clear analytics, performance tips, and A/B ideas help you improve engagement fast.</p>
+      </div>
+    </section>
+
+    <section id="features" class="feature-grid">
+      <article class="feature">
+        <h3>Elegant UI</h3>
+        <p>Soft gradients, balanced typography, and thoughtful spacing create a premium first impression.</p>
+      </article>
+      <article class="feature">
+        <h3>Responsive layout</h3>
+        <p>Your page looks stunning on desktop, tablet, and mobile without extra effort.</p>
+      </article>
+      <article class="feature">
+        <h3>Fast performance</h3>
+        <p>Lightweight code and smooth interactions keep your site feeling crisp and quick.</p>
+      </article>
+      <article class="feature">
+        <h3>Customizable</h3>
+        <p>Flexible sections and styles adapt to your brand, whether you need a sleek portfolio or product page.</p>
+      </article>
+    </section>
+
+    <footer id="contact">
+      <span>© 2026 Luma. Crafted for modern brands.</span>
+      <span>hello@luma.design</span>
+    </footer>
+  </div>
+</body>
+</html>
